@@ -1,0 +1,27 @@
+scheduler:
+  _target_: diffusers.DDIMScheduler
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: "scaled_linear"
+  clip_sample: false
+  set_alpha_to_one: false
+
+desired_style: "van gogh"
+desired_prompt: "a man in the car"
+
+prompts: ["A man working on a laptop", "A man eats pizza", "A woman playig on saxophone"]
+
+shared_score_shift: 1.0
+shared_score_scale: 1.0
+ref_image_path: "./dogs"
+num_steps: 50
+handler:
+  _target_: handler.StyleAlignedArgs
+  share_group_norm: true
+  share_layer_norm: true
+  share_attention: true
+  adain_queries: true
+  adain_keys: true
+  adain_values: false
+  shared_score_shift: 1
+  shared_score_scale: 1
